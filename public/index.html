@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+    <input type="number" id="a" value="0" />
+    x
+    <input type="number" id="b" value="0" />
+    <button id="submitBtn">Submit</button>
+    <p id="result"></p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(() => {
+        const fetching = (e) => {
+          var url = `http://localhost:8080/dummy?a=${parseInt(
+            $("#a").val()
+          )}&b=${parseInt($("#b").val())}`;
+          console.log(url);
+          $.when(
+            $.ajax({
+              url: url,
+              method: "GET",
+              success: (resp) => {
+                $("#result").text(resp);
+              },
+              error: (err) => {
+                console.log(err);
+              },
+            })
+          );
+        };
+        $("#submitBtn").click(fetching);
+        $("#a,#b").on("keypress", (e) => {
+          if (e.which == 13) {
+            fetching();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

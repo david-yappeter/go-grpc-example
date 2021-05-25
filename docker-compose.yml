@@ -1,0 +1,9 @@
+version: "3.5"
+
+services:
+    # Generate .proto to go
+    protoc:
+        image: "namely/protoc-all:latest"
+        volumes: 
+            - "./:/defs"
+        command: -f ./rpc/testing/*.proto -l go -o .
