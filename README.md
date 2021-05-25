@@ -14,17 +14,17 @@ services:
         command: -f ./rpc/testing/*.proto -l go -o .
 ```
 ```
-$ docker-compose run protoc
+docker-compose run protoc
 ```
 
 ##### Run Grpc Server
 ```
-$ go run grpc/grpc_server.go
+go run grpc/grpc_server.go
 ```
 
 ##### Run Main Code
 ```
-$ go run server.go
+go run server.go
 ```
 
 open http://localhost:8080 (simple multiplication)
