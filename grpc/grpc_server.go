@@ -20,17 +20,19 @@ func main() {
 		port = "8080"
 	}
 
-    //Net Listen
+	//Net Listen
 	lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%s", port))
 	if err != nil {
 		panic(err)
 	}
 
-    //Grpc Server
+	//Grpc Server
 	grpcServer := grpc.NewServer()
 	dummy.RegisterTesterGuideServer(grpcServer, &resolver.Server{})
 
-    //Listen and Serve tcp
+	//Listen and Serve tcp
 	log.Println("Listen and Serve at port :" + port)
-	grpcServer.Serve(lis)
+	if err := grpcServer.Serve(lis); err != nil {
+		fmt.Println(err)
+	}
 }

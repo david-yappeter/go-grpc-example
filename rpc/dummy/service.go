@@ -1,6 +1,7 @@
 package dummy
 
 import (
+	"fmt"
 	"os"
 
 	"google.golang.org/grpc"
@@ -8,12 +9,14 @@ import (
 
 //Create Client
 func Connect() (TesterGuideClient, *grpc.ClientConn) {
-	grpcPort := os.Getenv("GRPC_PORT")
+	grpcPort := os.Getenv("GRPC_ADDR")
 	if grpcPort == "" {
-		grpcPort = "8080"
+		grpcPort = ":8080"
 	}
 
-	conn, err := grpc.Dial(":"+grpcPort, grpc.WithInsecure())
+	fmt.Println("port: ", grpcPort)
+
+	conn, err := grpc.Dial(grpcPort, grpc.WithInsecure())
 	if err != nil {
 		panic(err)
 	}
