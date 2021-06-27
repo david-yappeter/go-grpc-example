@@ -1,0 +1,8 @@
+version: "3.5"
+
+services: 
+    protoc:
+        image: namely/protoc-all:latest
+        volumes: 
+            - ./:/defs
+        command: -f ./rpc/math/*.proto -l go -o .

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package = "./rpc/math";
+
+service MathGuide {
+    rpc Plus(PlusParam) returns(PlusResponse) {}
+}
+
+message PlusParam {
+    float a = 1;
+    float b = 2;
+}
+
+message PlusResponse {
+    float result = 1;
+}
