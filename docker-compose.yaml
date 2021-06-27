@@ -1,0 +1,26 @@
+version: "3.5"
+
+services:
+    go-server:
+        build:
+            context: .
+        image: go-image-1:latest
+        container_name: go-server
+        ports: 
+            - 8080:8080
+        networks: 
+            - go-grpc-net
+        environment: 
+            - GRPC_ADDR=go-grpc:8080
+
+    go-grpc:
+        build:
+            context: .
+        image: go-image-2:latest
+        container_name: go-grpc
+        networks: 
+            - go-grpc-net
+    
+networks: 
+    go-grpc-net:
+        driver: bridge

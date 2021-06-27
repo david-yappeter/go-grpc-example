@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option go_package="dummy";
+
+service TesterGuide {
+    rpc DummyRpc(DummyRpcParam) returns (DummyRpcResponse) {}
+}
+
+message DummyRpcParam {
+    int32 a = 1;
+    int32 b = 2;
+}
+
+message DummyRpcResponse {
+    int32 result = 3;
+}
